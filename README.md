@@ -8,7 +8,9 @@ Read Later is designed to simplify the process of saving articles for future rea
 
 ## Process Diagram
 
-A visual representation of the Read Later workflow can be found in [process.pdf](process.pdf). This diagram illustrates the complete flow from article collection through processing and organization.
+A visual representation of the Read Later workflow:
+
+![Read Later Process Flow](process.png)
 
 ## Features
 
