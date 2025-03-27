@@ -69,3 +69,29 @@ dmypy.json
 
 # pytest
 .pytest_cache/
+
+# DuckDB
+*.db
+*.duckdb
+*.duckdb.wal
+*.duckdb-shm
+*.duckdb-journal
+.duckdb/
+duckdb/
+
+# Environment
+.env
+.venv
+env/
+venv/
+ENV/
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/

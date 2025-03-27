@@ -1,10 +1,10 @@
 # Read Later
 
-A streamlined system for collecting, organizing, and managing articles for later reading. This project automates the process of gathering articles from various sources and storing them in an organized manner for future reference.
+A sophisticated AI-powered system for collecting, organizing, and managing articles for later reading. This project automates the process of gathering articles from various sources, processing them with AI, and generating valuable content from your reading notes.
 
 ## Overview
 
-Read Later is designed to simplify the process of saving articles for future reading. It uses email as a central collection point, leveraging the Gmail/Google ecosystem for robust automation and cross-platform accessibility.
+Read Later is designed to simplify your learning and content creation workflow. It uses email as a central collection point, leveraging the Gmail/Google ecosystem for initial data collection, and combines AI/ML techniques to provide intelligent content curation and knowledge synthesis.
 
 ## Process Diagram
 
@@ -14,44 +14,77 @@ A visual representation of the Read Later workflow:
 
 ## Features
 
+### Content Collection & Processing
 - **Email-based Collection**: Easy article submission through email
-- **Automated Processing**: Automatic extraction of article metadata
-- **Google Sheets Integration**: Centralized storage of article information
-- **Tag-based Organization**: Flexible categorization system
+- **Google Sheets Integration**: Initial data collection and staging
+- **Local Database Storage**: Secure storage using DuckDB
+- **Tag-based Organization**: AI-enhanced categorization system
 - **Cross-platform Accessibility**: Access your reading list from any device
+
+### AI/ML Capabilities
+- **Intelligent Content Curation**: AI agents analyze and tag articles
+- **Smart Summarization**: Automatic generation of article summaries
+- **Related Content Discovery**: ML-based recommendation of related articles
+- **Knowledge Synthesis**: AI-powered generation of reading notes
+- **Content Generation**: Automated creation of various content types
+
+### Content Generation
+- **Lesson Plans**: Structured learning materials
+- **Blog Posts**: Engaging content for your blog
+- **Video Scripts**: Ready-to-use video content
+- **Reading Guides**: Curated learning paths
+- **News Summaries**: Concise overviews of topics
+- **Social Posts**: Shareable content snippets
+- **Research Topics**: AI-identified research areas
+- **Trend Monitoring**: Automated trend analysis
+- **Newsletters**: Curated content for your audience
 
 ## Process Flow
 
-1. **Collection**
+1. **Collection & Initial Storage**
    - Articles are collected through email submissions
    - Sources include:
      - Manual submissions via email
      - Automated newsletters (TLDR, MarTech)
      - Daily topic-based collections
+   - Data is initially stored in Google Sheets
+   - Python scripts monitor Google Sheets for updates
+   - New entries are transferred to local DuckDB database
 
-2. **Processing**
+2. **Processing & Analysis**
    - System extracts unique URLs from incoming emails
    - Processes article metadata including:
      - Title
      - Source
      - Tags
-   - Appends information to a centralized Google Sheet
+   - AI agents analyze and enhance article metadata
+   - ML models identify related content
+   - Articles are summarized and tagged
 
-3. **Organization**
-   - Articles are stored in a "Read Later" section
-   - Each article entry includes:
-     - Title
-     - Source
-     - Tags for categorization
-     - URL
+3. **Knowledge Management**
+   - Articles are processed using Zettelkasten methodology
+   - Reading notes are automatically generated in Markdown
+   - Notes are integrated with Obsidian for knowledge management
+   - AI agents generate permanent notes and connections
+
+4. **Content Generation**
+   - Local AI (Ollama) processes reading notes
+   - MSTY (or similar) generates various content types
+   - Content is automatically formatted and organized
+   - Regular updates and refinements through AI feedback
 
 ## Technical Details
 
 The system is built using:
-- Google Apps Script for automation
-- Gmail for article collection
-- Google Sheets for data storage
-- Email-based workflow for cross-platform compatibility
+- Google Apps Script for email automation
+- Google Sheets for initial data collection
+- Python scripts for data synchronization
+- DuckDB for local data storage
+- Apache Airflow for task scheduling
+- AI/ML frameworks for content processing
+- Ollama for local AI processing
+- Obsidian for knowledge management
+- Markdown for note formatting
 
 ### Email Processing Logic
 
@@ -74,22 +107,31 @@ The system uses a sophisticated email processing workflow:
    - Extracts article titles from email content
    - Processes sender information from email headers
    - Parses hashtags from email subjects (e.g., #tag1, #tag2)
-   - Stores all metadata in a structured Google Sheet format
+   - Stores initial metadata in Google Sheets
 
 4. **Data Storage**
-   - Stores processed articles in a Google Sheet with columns for:
+   - Initial storage in Google Sheets with columns for:
      - Title
      - URL
      - Tags
      - Sender Name
+   - Python scripts (`update.py`) monitor for changes
+   - Data is synchronized to DuckDB with additional columns for:
+     - AI-generated metadata
+     - Reading notes
+     - Generated content
 
 ### Automation Features
 
 - Automated processing of labeled emails
+- Google Sheets to DuckDB synchronization
 - Intelligent URL cleaning and validation
 - Smart title extraction from email content
 - Tag-based categorization system
 - Duplicate prevention mechanism
+- Scheduled content updates via Airflow
+- AI-powered content generation
+- Automated knowledge synthesis
 
 ## Getting Started
 
