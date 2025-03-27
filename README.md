@@ -6,6 +6,10 @@ A streamlined system for collecting, organizing, and managing articles for later
 
 Read Later is designed to simplify the process of saving articles for future reading. It uses email as a central collection point, leveraging the Gmail/Google ecosystem for robust automation and cross-platform accessibility.
 
+## Process Diagram
+
+A visual representation of the Read Later workflow can be found in [process.pdf](process.pdf). This diagram illustrates the complete flow from article collection through processing and organization.
+
 ## Features
 
 - **Email-based Collection**: Easy article submission through email
