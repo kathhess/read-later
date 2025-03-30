@@ -1,5 +1,6 @@
 # Custom files & folders
-test.ipynb
+_notes.md
+_test.ipynb
 gitignore/
 
 
@@ -95,3 +96,52 @@ ENV/
 # Logs
 *.log
 logs/
+
+# Google API Credentials
+credentials.json
+client_secrets.json
+service-account.json
+google-credentials.json
+token.json
+token.pickle
+client_config.json
+
+# Airflow
+airflow/
+airflow.db
+airflow-webserver.pid
+airflow-scheduler.pid
+airflow.cfg
+*.pid
+*.err
+*.log
+webserver_config.py
+*.pyc
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+*.mo
+*.pot
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+instance/
+.webassets-cache

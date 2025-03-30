@@ -86,6 +86,35 @@ The system is built using:
 - Obsidian for knowledge management
 - Markdown for note formatting
 
+### Data Loading Process
+
+The system uses a Python script (`load_data.py`) to synchronize data from Google Sheets to a local DuckDB database:
+
+1. **Google Sheets Connection**
+   - Uses Google Sheets API with OAuth 2.0 authentication
+   - Reads data from the specified spreadsheet
+   - Handles authentication via `credentials.json`
+
+2. **Data Processing**
+   - Extracts article data including:
+     - Title
+     - URL (used as unique identifier)
+     - Tags
+     - Sender Name
+   - Adds timestamp for tracking updates
+
+3. **Database Integration**
+   - Uses DuckDB for local storage
+   - Implements upsert functionality to:
+     - Insert new records
+     - Track last update time
+   - Maintains data integrity with URL as primary key
+
+4. **Synchronization**
+   - Automatically detects new and modified records
+   - Provides statistics about sync operations
+   - Handles connection management and error cases
+
 ### Email Processing Logic
 
 The system uses a sophisticated email processing workflow:
