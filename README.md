@@ -115,6 +115,81 @@ The system uses a Python script (`load_data.py`) to synchronize data from Google
    - Provides statistics about sync operations
    - Handles connection management and error cases
 
+### Airflow Configuration
+
+The project uses Apache Airflow for task scheduling and automation. The main configuration includes:
+
+1. **Environment Setup**
+   ```bash
+   # Create and activate virtual environment
+   python -m venv airflow_env
+   source airflow_env/bin/activate
+
+   # Install dependencies
+   pip install apache-airflow apache-airflow-providers-google python-dotenv
+
+   # Configure Airflow
+   export AIRFLOW_HOME=~/Desktop/repositories/read-later/airflow
+   airflow db init
+   ```
+
+2. **Configuration Files**
+   - `config.py`: Central configuration for DAGs and application settings
+   - `airflow.cfg`: Airflow-specific configuration (auto-generated)
+   - `.env`: Environment variables for sensitive data
+
+3. **Running Airflow**
+   ```bash
+   # Development mode
+   airflow webserver --port 8080  # Terminal 1
+   airflow scheduler              # Terminal 2
+
+   # Production mode (background)
+   nohup airflow webserver --port 8080 > airflow-webserver.log 2>&1 &
+   nohup airflow scheduler > airflow-scheduler.log 2>&1 &
+   ```
+
+4. **Web Interface**
+   - URL: http://localhost:8080
+   - Default credentials are configured during setup
+
+### DAG: read_later_sync
+
+The `read_later_sync.py` DAG automates the synchronization between Google Sheets and the local DuckDB database:
+
+1. **Schedule**
+   - Runs daily at 8:00 AM (configurable in `config.py`)
+   - Uses project's virtual environment for execution
+   - Includes error handling and retries
+
+2. **Configuration**
+   ```python
+   # Default settings in config.py
+   DAG_SCHEDULE = '0 8 * * *'    # Daily at 8:00 AM
+   DAG_START_DATE = '2024-01-01'
+   DAG_TAGS = ['read_later', 'sync']
+   DAG_TIMEOUT = 30  # minutes
+   ```
+
+3. **Features**
+   - Automated data synchronization
+   - Error handling with retries
+   - Execution timeout protection
+   - Email notifications on failure
+   - Task logging and monitoring
+
+4. **Task Flow**
+   - Single task that executes `load_data.py`
+   - Uses project's virtual environment
+   - Maintains data integrity with error handling
+   - Logs execution details for monitoring
+
+5. **Monitoring**
+   - View task status in Airflow UI
+   - Check logs for execution details
+   - Monitor task duration and performance
+   - Track success/failure rates
+
 ### Email Processing Logic
 
 The system uses a sophisticated email processing workflow:
